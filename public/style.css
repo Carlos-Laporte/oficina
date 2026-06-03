@@ -1,0 +1,537 @@
+*,*::before,*::after{box-sizing:border-box}body,h1,h2,h3,h4,p,figure,blockquote,dl,dd{margin:0}ul[role="list"],ol[role="list"]{list-style:none}html:focus-within{scroll-behavior:smooth}body{min-height:100vh;text-rendering:optimizeSpeed;line-height:1.5}a:not([class]){text-decoration-skip-ink:auto}input,button,textarea,select{font:inherit}@media(prefers-reduced-motion:reduce){html:focus-within{scroll-behavior:auto}*,*::before,*::after{animation-duration:.01ms !important;animation-iteration-count:1 !important;transition-duration:.01ms !important;scroll-behavior:auto !important}}
+
+body{
+    font-family: arial;
+    background: black;
+    display: grid;
+    justify-content: space-around;
+    margin: 0;
+    padding: 0;
+}
+
+/* Estilos para a barra superior */
+
+header{
+    display: grid;
+    justify-content: space-around;
+    background: black;
+}
+
+.abaSuperior{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    background: black;
+    padding: 0px 20px;
+}
+
+.logo img{
+    display: flex;
+    height: 120px;
+    margin: 0;
+}
+
+.navLink{
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    margin-right: 80px;
+}
+
+.navLink:hover{
+    border-bottom: 2px solid red;
+    transition: all 0.3s ease;
+}
+
+.agendamento{
+    background: rgba(255, 0, 0, 0.664);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+.agendamento a{
+    color: white;
+    text-decoration: none;
+}
+
+.agendamento:hover{
+    padding: 10px 25px;
+    background: red;
+}
+
+/* Estilos para o banner */
+
+.banner{
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    background: url('assets/banner.png') center;
+    background-size: cover;
+    padding-top: 100px;
+    padding-left: 100px;
+    height: 90vh;
+}
+
+.cabecaBanner{
+    color: white;
+    padding-top: 30px;
+    margin-bottom: 20px;
+}
+
+.cabecaBanner h2{
+    font-size: 18px;
+    padding-bottom: 20px;
+}
+
+.cabecaBanner h2 i{
+    color: red;
+    font-size: 30px;
+    margin-right: 10px;
+}
+
+.cabecaBanner h1{
+    font-size: 40px;
+    padding-bottom: 20px;
+}
+
+.cabecaBanner p{
+    font-size: 16px;
+    color: #ffffff9e;
+    max-width: 600px;
+    padding-bottom: 30px;
+}
+
+.destaque{
+    color: red;
+}
+
+.informacoesBanner{
+    color: white;
+    font-size: 18px;
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    width: 100%;
+    display: flex;
+    background: #000000c7;
+    flex-wrap: nowrap;
+}
+
+.servicosDeQualidade{
+    padding: 30px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.servicosDeQualidade h3{
+    font-size: 24px;
+    margin-bottom: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.servicosDeQualidade p{
+    font-size: 16px;
+    color: #ffffff9e;
+    max-width: 600px;
+}
+
+.servicosDeQualidade h3 i{
+    color: red;
+    font-size: 30px;
+    margin-right: 10px;
+}
+
+.equipamentosModernos{
+    padding: 30px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.equipamentosModernos h3{
+    font-size: 24px;
+    margin-bottom: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.equipamentosModernos p{
+    font-size: 16px;
+    color: #ffffff9e;
+    max-width: 600px;
+}
+
+.equipamentosModernos h3 i{
+    color: red;
+    font-size: 30px;
+    margin-right: 10px;
+}
+
+.atendimentoHonesto{
+    padding: 30px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.atendimentoHonesto h3{
+    font-size: 24px;
+    margin-bottom: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.atendimentoHonesto p{
+    font-size: 16px;
+    color: #ffffff9e;
+    max-width: 600px;
+}
+
+.atendimentoHonesto h3 i{
+    color: red;
+    font-size: 30px;
+    margin-right: 10px;
+}
+
+.garantiaDeServicos{
+    padding: 30px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.garantiaDeServicos h3{
+    font-size: 24px;
+    margin-bottom: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.garantiaDeServicos p{
+    font-size: 16px;
+    color: #ffffff9e;
+    max-width: 600px;
+}
+
+.garantiaDeServicos h3 i{
+    color: red;
+    font-size: 30px;
+    margin-right: 10px;
+}
+
+/* Estilos para os serviços */
+
+.textoServicos{
+    width: 100%;
+    text-align: center;
+    display: grid;
+    grid-auto-flow: row;
+}
+
+.textoServicos p{
+    font-size: 18px;
+    color: red;
+}
+
+.textoServicos h2{
+    font-size: 24px;
+    color: white;
+    padding-bottom: 5px;
+}
+
+.linha{
+    width: 100%;
+    color: red;
+    margin-top: -20px;
+    display: flex;
+    font-size: 30px;
+    margin-bottom: 30px;
+    justify-content: center;
+}
+
+.servicos{
+    padding: 30px;
+    background: black;
+    display: grid;
+    justify-content: space-around;
+}
+
+.corpoServicos{
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 10px;
+}
+
+.tituloServico{
+    font-size: 18px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.tiposDeServicos{
+    background: white;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 240px;
+    text-align: center;
+    border: 1px solid #0000001f;
+    border-radius: 10px;
+    box-shadow: 0px 0px 20px #000000a1;
+    padding: 20px;
+}
+
+.icons{
+    font-size: 30px;
+    color: red;
+    display: flex;
+    width: 100%;
+    justify-content: center;
+}
+
+/* Estilos para a equipe */
+
+.equipe{
+    padding: 30px;
+    background: url('assets/equipe.jpg') center;
+    background-size: cover;
+    display: grid;
+    justify-content: space-around;
+    color: white;
+}
+
+.textoEquipe{
+    width: 100%;
+    text-align: center;
+    display: grid;
+    grid-auto-flow: row;
+}
+
+.textoEquipe{
+    font-size: 18px;
+    color: red;
+}
+
+.tituloEquipe{
+    font-size: 24px;
+    display: flex;
+    justify-content: center;
+    padding-bottom: 20px;
+}
+
+.corpoEquipe{
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 10px;
+}
+
+.membrosEquipe h4{
+    font-size: 18px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.membrosEquipe{
+    background: rgb(0 0 0 / 91%);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 240px;
+    text-align: center;
+    border: 1px solid #0000001f;
+    border-radius: 10px;
+    box-shadow: 0px 0px 20px #000000a1;
+    padding: 20px;
+}
+
+.cargo{
+    font-size: 15px;
+    color: red;
+    display: flex;
+    width: 100%;
+    justify-content: center;
+}
+
+.imgEquipe{
+    height: 120px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+}
+
+/* Estilos para os depoimentos */
+
+.textoDepoimentos{
+    width: 100%;
+    text-align: center;
+    display: grid;
+    grid-auto-flow: row;
+}
+
+.textoDepoimentos p{
+    font-size: 18px;
+    color: red;
+}
+
+.textoDepoimentos h2{
+    font-size: 24px;
+    color: white;
+    padding-bottom: 20px;
+}
+
+.depoimentos{
+    padding: 30px;
+    background: black;
+    display: grid;
+    justify-content: space-around;
+}
+
+.corpoDepoimentos{
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 30px;
+}
+
+.titulodepoimentos{
+    font-size: 18px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.tiposDeDepoimentos{
+    background: white;
+    display: flex;
+    flex-wrap: wrap;
+    width: 240px;
+    border: 1px solid #0000001f;
+    border-radius: 10px;
+    box-shadow: 0px 0px 20px #000000a1;
+    padding: 20px;
+}
+
+.tiposDeDepoimentos i{
+    font-size: 20px;
+    color: red;
+}
+
+/* Estilos para o agendamento */
+
+.corpoAgendamento{
+    background: url('assets/agendamento.png') right;
+    background-size: cover;
+    padding: 30px;
+    display: flex;
+}
+
+.textoAgendamento{
+    width: 100%;
+    padding: 100px;
+    color: white;
+    display: grid;
+}
+
+.textoTop{
+    font-size: 20px;
+    color: red;
+}
+
+.formTitle{
+    font-size: 30px;
+    padding-top: 10px;
+    padding-bottom: 20px;
+}
+
+.formDescription{
+    font-size: 20px;
+    color: #ffffff9e;
+    max-width: 600px;
+}
+
+.textoAgendamento i{
+    color: red;
+    font-size: 20px;
+}
+
+.formAgendamento{
+    background: white;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+    border: 1px solid #0000001f;
+    border-radius: 10px;
+    box-shadow: 0px 0px 20px #000000a1;
+    padding: 40px;
+}
+
+.formConteiner{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.formConteiner input{
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #0000001f;
+    border-radius: 5px;
+}
+
+.formConteiner select{
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #0000001f;
+    border-radius: 5px;
+}
+
+.formConteiner textarea{
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #0000001f;
+    border-radius: 5px;
+}
+
+.formConteiner button{
+    background: #ff0000b0;
+    color: white;
+    border: none;
+    display: flex;
+    border-radius: 5px;
+    font-size: 16px;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+/* Estilos para o rodapé */
+
+.footer{
+    background: black;
+    color: white;
+    display: flex;
+    padding: 20px;
+    padding-left: 100px;
+    padding-right: 100px;
+}
+
+.corpoFooter{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
+}
+
+.corpoFooter p{
+    font-size: 14px;
+}
+
+.linksFooter a{
+    color: white;
+    font-size: 20px;
+    margin-left: 10px;
+}
