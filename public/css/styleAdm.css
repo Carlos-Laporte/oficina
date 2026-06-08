@@ -1,0 +1,72 @@
+body{
+    background: black;
+}
+
+.corpo_main{
+    display: flex;
+}
+
+.corpoInformacao{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+}
+
+.logoDashboard{
+    background: rgb(10, 15, 25);
+    color: white;
+    display: grid;
+    margin-top: 0px;
+}
+
+.areaDeNavegacao{
+    display: grid;
+    background: rgb(17, 24, 39);
+}
+
+.parteSuperior{
+    background: rgb(10, 15, 25);
+    color: white;
+}
+
+.parteInformacao{
+    background: white;
+}
+
+.telas{
+    padding: 20px;
+    display: grid;
+    gap: 20px;
+    font-size: 20px;
+}
+
+.telas a{
+    text-decoration: none;
+    color: white;
+    border: 1px solid white;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.telas a:hover{
+    background: red;
+}
+
+.sair{
+    padding: 20px;
+    display: grid;
+    gap: 20px;
+    font-size: 20px;
+}
+
+.sair a{
+    text-decoration: none;
+    color: white;
+    border: 1px solid white;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.sair a:hover{
+    background: red;
+}

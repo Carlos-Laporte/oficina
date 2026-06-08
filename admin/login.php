@@ -53,7 +53,7 @@
             </div>
             <div class="formularioDeLogin">
                 <h1>Login</h1>
-                <form action="login.php" method="POST">
+                <form action="index.php" method="POST">
                     <label for="email">Email:</label>
                     <input type="email" id="email" name="email" required>
                     <br>
