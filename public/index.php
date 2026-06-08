@@ -4,7 +4,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Lelicar Centro Automotivo</title>
-        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="css/styleIndex.css">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
     </head>
     <body>
@@ -18,7 +18,7 @@
                 <a href="#equipe" class="navLink">EQUIPE</a>
                 <a href="#depoimentos" class="navLink">DEPOIMENTOS</a>
                 <a href="#contato" class="navLink">CONTATO</a>
-                <button class="agendamento"><a href="">LOGIN</a></button>
+                <a href="../admin/login.php" class="agendamento">LOGIN</a>
             </div>
         </header>
         <main>
@@ -31,7 +31,7 @@
                             Aqui seu veículo recebe o melhor atendimento,<br>com profissionais qualificados,
                             peças de qualidade,<br>tecnologia de ponta e um ambiente seguro.
                         </p>
-                        <button class="agendamento"><i class="bi bi-calendar2-week"></i><a href="#agendamento"> AGENDAR</a></button>
+                        <a href="#agendamento" class="agendamento"><i class="bi bi-calendar2-week"></i> AGENDAR</a>
                     </div>
                     <div class="informacoesBanner">
                         <div class="servicosDeQualidade">
@@ -202,10 +202,10 @@
             </div>
             <div class="corpoAgendamento" id="agendamento">
                 <div class="textoAgendamento" id="contato">
-                    <p class="textoTop">AGENDE SUA VISITA</p>
+                    <p class="textoTop"><strong>AGENDE SUA VISITA</strong></p>
                     <h3 class="formTitle">É rápido, fácil e garante o melhor atendimento para o seu veículo</h3>
                     <p class="formDescription">
-                        preencha o formulário ao lado ou entre em contato conosco para
+                        Preencha o formulário ao lado ou entre em contato conosco para
                         agendar uma visita ou tirar dúvidas sobre nossos serviços. 
                         Estamos aqui para ajudar a cuidar do seu carro com qualidade e confiança.
                     </p>

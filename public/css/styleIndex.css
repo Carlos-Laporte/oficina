@@ -45,6 +45,7 @@ header{
 }
 
 .agendamento{
+    text-decoration: none;
     background: rgba(255, 0, 0, 0.664);
     color: white;
     border: none;
@@ -54,10 +55,7 @@ header{
     cursor: pointer;
 }
 
-.agendamento a{
-    color: white;
-    text-decoration: none;
-}
+
 
 .agendamento:hover{
     padding: 10px 25px;
@@ -70,7 +68,7 @@ header{
     position: relative;
     display: flex;
     flex-wrap: wrap;
-    background: url('assets/banner.png') center;
+    background: url('../assets/banner.png') center;
     background-size: cover;
     padding-top: 100px;
     padding-left: 100px;
@@ -300,7 +298,7 @@ header{
 
 .equipe{
     padding: 30px;
-    background: url('assets/equipe.jpg') center;
+    background: url('../assets/equipe.jpg') center;
     background-size: cover;
     display: grid;
     justify-content: space-around;
@@ -423,7 +421,7 @@ header{
 /* Estilos para o agendamento */
 
 .corpoAgendamento{
-    background: url('assets/agendamento.png') right;
+    background: url('../assets/agendamento.png') right;
     background-size: cover;
     padding: 30px;
     display: flex;
@@ -437,7 +435,7 @@ header{
 }
 
 .textoTop{
-    font-size: 20px;
+    font-size: 25px;
     color: red;
 }
 
@@ -459,7 +457,7 @@ header{
 }
 
 .formAgendamento{
-    background: white;
+    background: #1a1a1a;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -476,23 +474,34 @@ header{
     gap: 15px;
 }
 
+.formTitulo{
+    color: red;
+    margin-bottom: 10px;
+}
+
 .formConteiner input{
     width: 100%;
+    color: white;
+    background: #000000;
     padding: 10px;
     border: 1px solid #0000001f;
-    border-radius: 5px;
+    border-radius: 10px;
 }
 
 .formConteiner select{
     width: 100%;
     padding: 10px;
+    color: white;
+    background: black;
     border: 1px solid #0000001f;
-    border-radius: 5px;
+    border-radius: 10px;
 }
 
 .formConteiner textarea{
     width: 100%;
     padding: 10px;
+    color: white;
+    background: black;
     border: 1px solid #0000001f;
     border-radius: 5px;
 }
