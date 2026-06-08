@@ -1,15 +1,30 @@
 body{
     background: black;
+    display: flex;
+    margin: 0;
+}
+
+.corpo{
+    display: flex;
+    flex: 1;
 }
 
 .corpo_main{
     display: flex;
+    flex: 1;
+}
+
+.corpo_lateral{
+    display: flex;
+    flex-direction: column;
+    flex: 1;
 }
 
 .corpoInformacao{
     display: flex;
     flex-wrap: wrap;
     flex-direction: column;
+    flex: 5;
 }
 
 .logoDashboard{
@@ -17,11 +32,13 @@ body{
     color: white;
     display: grid;
     margin-top: 0px;
+    justify-content: center;
 }
 
 .areaDeNavegacao{
     display: grid;
     background: rgb(17, 24, 39);
+    flex: 1;
 }
 
 .parteSuperior{
@@ -31,25 +48,29 @@ body{
 
 .parteInformacao{
     background: white;
+    flex: 1;
 }
 
 .telas{
     padding: 20px;
     display: grid;
     gap: 20px;
+    border-top: 1px solid #ffffff26;
+    border-bottom: 1px solid #ffffff26;
+    padding-bottom: 146px;
     font-size: 20px;
 }
 
 .telas a{
     text-decoration: none;
     color: white;
-    border: 1px solid white;
-    border-radius: 10px;
     padding: 10px;
 }
 
 .telas a:hover{
     background: red;
+    border: 1px solid white;
+    border-radius: 10px;
 }
 
 .sair{
@@ -62,11 +83,11 @@ body{
 .sair a{
     text-decoration: none;
     color: white;
-    border: 1px solid white;
-    border-radius: 10px;
     padding: 10px;
 }
 
 .sair a:hover{
     background: red;
+    border: 1px solid white;
+    border-radius: 10px;
 }
