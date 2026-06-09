@@ -3,19 +3,11 @@
     session_start();
     require_once("../conexao.php");
 
-    if (isset($_SESSION['adm_id'])) {
-        header('Location: admin/index.php');
-        exit;
-    }
-
     $erro = '';
-
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST') { 
         $email = $_POST['email'] ?? '';
         $senha = $_POST['senha'] ?? '';
-
-        
 
         $stmt = $conn->prepare('SELECT id, nome, senha FROM adm WHERE email = :email');
         $stmt->bindValue(':email', $email);
@@ -53,12 +45,12 @@
             </div>
             <div class="formularioDeLogin">
                 <h1>Login</h1>
-                <form action="index.php" method="POST">
+                <form action="login.php" method="POST">
                     <label for="email">Email:</label>
                     <input type="email" id="email" name="email" required>
                     <br>
                     <label for="password">Password:</label>
-                    <input type="password" id="password" name="password" required>
+                    <input type="password" id="senha" name="senha" required>
                     <br>
                     <button type="submit">Login</button>
                 </form>

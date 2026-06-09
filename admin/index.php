@@ -1,6 +1,8 @@
 <?php
-    if (isset($_SESSION['adm_id'])) {
-        header('Location: ../public/index.php');
+    session_start();
+
+    if (!isset($_SESSION['adm_id'])) {
+        header('Location: login.php');
         exit;
     }
 ?>
@@ -35,7 +37,7 @@
                             <a href="../pages/user_add.php"><i class="bi bi-house-gear-fill"></i> Configurações</a>
                         </div>
                         <div class="sair">
-                            <a href="../public/index.php"><i class="bi bi-box-arrow-right"></i> Sair</a>
+                            <a href="logout.php"><i class="bi bi-box-arrow-right"></i> Sair</a>
                         </div>
                     </div>
                     
