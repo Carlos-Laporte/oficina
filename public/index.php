@@ -1,17 +1,73 @@
+<?php
+    session_start();
+    $error_message = '';
+    $success_message = '';
+
+    require_once('../configuration/connection.php');
+
+    //recebe os dados do formulário de cadastro
+    if ($_SERVER["REQUEST_METHOD"] === "POST") {
+
+        $nome    = trim($_POST['nome']);
+        $email = strtolower(trim($_POST['email']));
+        $telefone = trim($_POST['telefone']);
+        $veiculo = trim($_POST['veiculo']);
+        $ano = trim($_POST['ano']);
+        $servico = trim($_POST['servico']);
+        $data = trim($_POST['data']);
+        $horario = trim($_POST['horario']);
+        $comentario = trim($_POST['comentario']);
+
+        if (empty($supplierName) || empty($location) || empty($email)) {
+            $error_message = "Please fill in all fields.";
+
+        } else {
+            $stmt = $conn->prepare("SELECT id FROM suppliers WHERE email = :email");
+            $stmt->execute([':email' => $email]);
+            if ($stmt->rowCount() > 0) {
+                $error_message = "This email is already registered.";
+            } 
+            else {
+                try {
+
+                    $sql = "INSERT INTO suppliers (`supplier_name`, `supplier_location`, email, created_by) 
+                            VALUES (:supplier_name, :supplier_location, :email, :created_by)";
+                    $stmt = $conn->prepare($sql);
+                    
+                    $result = $stmt->execute([
+                        ':supplier_name'      => $supplierName,
+                        ':supplier_location'  => $location,
+                        ':email'              => $email
+                    ]);
+
+                    if($result) {
+                        $_SESSION['success_message'] = "Supplier created successfully.";
+                        header("Location: suppliers_add.php");
+                        exit();
+                    }
+    
+                } catch (PDOException $e) {
+                    $error_message = "Database Error: " . $e->getMessage();
+                }
+            }
+        }
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="pt">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Lelicar Centro Automotivo</title>
-        <link rel="stylesheet" href="css/styleIndex.css">
+        <link rel="stylesheet" href="../assets/css/styleIndex.css">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
     </head>
     <body>
         <header>
             <div class="abaSuperior">
                 <div class="logo">
-                    <img src="assets/logo.jpg" alt="Logo">
+                    <img src="../assets/img/logo.jpg" alt="Logo">
                 </div>
                 <a href="#inicio" class="navLink">INÍCIO</a>
                 <a href="#servicos" class="navLink">SERVIÇOS</a>
@@ -122,7 +178,7 @@
                 </div>
                 <div class="corpoEquipe">
                     <div class="membrosEquipe">
-                        <img class="imgEquipe" src="assets/mecanico_chefe.png" alt="Rafael Souza">
+                        <img class="imgEquipe" src="../assets/img/mecanico_chefe.png" alt="Rafael Souza">
                         <h4>RAFAEL SOUZA</h4>
                         <p class="cargo">Mecânico Chefe</p>
                         <p>
@@ -130,7 +186,7 @@
                         </p>
                     </div>
                     <div class="membrosEquipe">
-                        <img class="imgEquipe" src="assets/especialista.png" alt="Lucas Ferreira">
+                        <img class="imgEquipe" src="../assets/img/especialista.png" alt="Lucas Ferreira">
                         <h4>LUCAS FERREIRA</h4>
                         <p class="cargo">Especialista em Diagnóstico</p>
                         <p>
@@ -138,7 +194,7 @@
                         </p>
                     </div>
                     <div class="membrosEquipe">
-                        <img class="imgEquipe" src="assets/especialista_mecanico.png" alt="Diego Almeida">
+                        <img class="imgEquipe" src="../assets/img/especialista_mecanico.png" alt="Diego Almeida">
                         <h4>DIEGO ALMEIDA</h4>
                         <p class="cargo">Mecânico Especializado</p>
                         <p>
@@ -146,7 +202,7 @@
                         </p>
                     </div>
                     <div class="membrosEquipe">
-                        <img class="imgEquipe" src="assets/mecanico.png" alt="Carlos Oliveira">
+                        <img class="imgEquipe" src="../assets/img/mecanico.png" alt="Carlos Oliveira">
                         <h4>CARLOS OLIVEIRA</h4>
                         <p class="cargo">Mecânico</p>
                         <p>
@@ -155,7 +211,7 @@
                         </p>
                     </div>
                     <div class="membrosEquipe">
-                        <img class="imgEquipe" src="assets/atendente.png" alt="Juliana Lima">
+                        <img class="imgEquipe" src="../assets/img/atendente.png" alt="Juliana Lima">
                         <h4>JULIANA LIMA</h4>
                         <p class="cargo">Atendimento</p>
                         <p>
@@ -215,22 +271,22 @@
                 </div>
                 <div class="formAgendamento">
                     <h2 class="formTitulo">FORMULÁRIO DE AGENDAMENTO</h2>
-                    <form action="">
+                    <form action="index.php" method="$_POST">
                         <div class="formConteiner">
-                            <input type="text" placeholder="Nome Completo" required>
-                            <input type="email" placeholder="Email" required>
-                            <input type="tel" placeholder="Telefone" required>
-                            <input type="text" placeholder="Veículo (marca e modelo)" required>
-                            <input type="text" placeholder="Ano do Veículo" required>
-                            <select type="text" placeholder="Serviço Desejado" required>
+                            <input type="text" placeholder="Nome Completo" id="nome" required>
+                            <input type="email" placeholder="Email" id="email" required>
+                            <input type="tel" placeholder="Telefone" id="telefone" required>
+                            <input type="text" placeholder="Veículo (marca e modelo)" id="veiculo" required>
+                            <input type="text" placeholder="Ano do Veículo" id="ano" required>
+                            <select type="text" placeholder="Serviço Desejado" id="servico" required>
                                 <option value="">Selecione um serviço</option>
                                 <option value="manutencao">Manutenção</option>
                                 <option value="reparo">Reparo</option>
                                 <option value="diagnostico">Diagnóstico</option>
                             </select>
-                            <input type="date" placeholder="Data da Visita" required>
-                            <input type="time" placeholder="Horário preferido" required>
-                            <textarea placeholder="Observações adicionais" rows="4"></textarea>
+                            <input type="date" placeholder="Data da Visita" id="data" required>
+                            <input type="time" placeholder="Horário preferido" id="horario" required>
+                            <textarea placeholder="Observações adicionais" rows="4" id="comentario" ></textarea>
                             <button class="agendamento">AGENDAR VISITA</button>
                         </div>
                     </form>

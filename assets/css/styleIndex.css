@@ -68,7 +68,7 @@ header{
     position: relative;
     display: flex;
     flex-wrap: wrap;
-    background: url('../assets/banner.png') center;
+    background: url('../img/banner.png') center;
     background-size: cover;
     padding-top: 100px;
     padding-left: 100px;
@@ -298,7 +298,7 @@ header{
 
 .equipe{
     padding: 30px;
-    background: url('../assets/equipe.jpg') center;
+    background: url('../img/equipe.jpg') center;
     background-size: cover;
     display: grid;
     justify-content: space-around;
@@ -421,7 +421,7 @@ header{
 /* Estilos para o agendamento */
 
 .corpoAgendamento{
-    background: url('../assets/agendamento.png') right;
+    background: url('../img/agendamento.png') right;
     background-size: cover;
     padding: 30px;
     display: flex;

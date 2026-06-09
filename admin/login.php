@@ -32,7 +32,8 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Login</title>
-        <link rel="stylesheet" href="../public/css/styleLogin.css">
+        <link rel="stylesheet" href="../assets/css/styleLogin.css">
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     </head>
     <body>
         <div class="corpoLogin">
@@ -41,7 +42,7 @@
                 <p>Faça login para acessar sua conta</p>
             </div>
             <div class="logo">
-                <img src="../public/assets/logo.jpg" alt="Logo da Oficina">
+                <img src="../assets/img/logo.jpg" alt="Logo da Oficina">
             </div>
             <div class="formularioDeLogin">
                 <h1>Login</h1>

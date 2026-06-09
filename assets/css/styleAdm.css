@@ -48,6 +48,7 @@ body{
 
 .parteInformacao{
     background: white;
+    padding-left: 20px;
     flex: 1;
 }
 
@@ -57,7 +58,7 @@ body{
     gap: 20px;
     border-top: 1px solid #ffffff26;
     border-bottom: 1px solid #ffffff26;
-    padding-bottom: 146px;
+    padding-bottom: 166px;
     font-size: 20px;
 }
 
@@ -69,7 +70,6 @@ body{
 
 .telas a:hover{
     background: red;
-    border: 1px solid white;
     border-radius: 10px;
 }
 
@@ -88,6 +88,5 @@ body{
 
 .sair a:hover{
     background: red;
-    border: 1px solid white;
     border-radius: 10px;
 }

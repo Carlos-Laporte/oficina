@@ -13,7 +13,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Document</title>
-        <link rel="stylesheet" href="../public/css/styleAdm.css">
+        <link rel="stylesheet" href="../assets/css/styleAdm.css">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
     </head>
     <body>
@@ -27,7 +27,7 @@
                     <div class="areaDeNavegacao">
                         <div class="telas">
                             <a href="index.php"><i class="bi bi-house-door-fill"></i><span class="menuText"> Dashboard</span></a>
-                            <a href="../public/pages/clientes.php"><i class="bi bi-person-fill"></i> Clientes</a>
+                            <a href="../public/clientes.php"><i class="bi bi-person-fill"></i> Clientes</a>
                             <a href="../pages/products_add.php"><i class="bi bi-car-front-fill"></i> Veículos</a>  
                             <a href="../pages/suppliers_table.php"><i class="bi bi-card-checklist"></i> Ordens de Serviço</a>
                             <a href="../pages/suppliers_add.php"><i class="bi bi-tools"></i> Serviços</a>
