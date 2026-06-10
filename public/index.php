@@ -1,54 +1,56 @@
 <?php
+
     session_start();
-    $error_message = '';
-    $success_message = '';
+    require_once("../conexao.php");
 
-    require_once('../configuration/connection.php');
+    $erro = '';
+    $sucesso = '';
 
-    //recebe os dados do formulário de cadastro
-    if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-        $nome    = trim($_POST['nome']);
-        $email = strtolower(trim($_POST['email']));
-        $telefone = trim($_POST['telefone']);
-        $veiculo = trim($_POST['veiculo']);
-        $ano = trim($_POST['ano']);
-        $servico = trim($_POST['servico']);
-        $data = trim($_POST['data']);
-        $horario = trim($_POST['horario']);
-        $comentario = trim($_POST['comentario']);
+        $nome = trim($_POST['nome'] ?? '');
+        $email = trim($_POST['email'] ?? '');
+        $telefone = trim($_POST['telefone'] ?? '');
+        $veiculo = trim($_POST['veiculo'] ?? '');
+        $ano = trim($_POST['ano'] ?? '');
+        $servico = trim($_POST['servico'] ?? '');
+        $data = trim($_POST['data'] ?? '');
+        $horario = trim($_POST['horario'] ?? '');
+        $comentario = trim($_POST['comentario'] ?? '');
 
-        if (empty($supplierName) || empty($location) || empty($email)) {
-            $error_message = "Please fill in all fields.";
+        if (empty($nome) || empty($email) || empty($telefone) || empty($veiculo) || empty($ano) || empty($servico) || empty($data) || empty($horario)) {
+
+            $erro = 'Preencha todos os campos.';
 
         } else {
-            $stmt = $conn->prepare("SELECT id FROM suppliers WHERE email = :email");
-            $stmt->execute([':email' => $email]);
-            if ($stmt->rowCount() > 0) {
-                $error_message = "This email is already registered.";
-            } 
-            else {
-                try {
 
-                    $sql = "INSERT INTO suppliers (`supplier_name`, `supplier_location`, email, created_by) 
-                            VALUES (:supplier_name, :supplier_location, :email, :created_by)";
-                    $stmt = $conn->prepare($sql);
-                    
-                    $result = $stmt->execute([
-                        ':supplier_name'      => $supplierName,
-                        ':supplier_location'  => $location,
-                        ':email'              => $email
-                    ]);
+            $stmt = $conn->prepare("
+                INSERT INTO cliente (
+                    nome, email, telefone, veiculo, ano, servico, data, horario, comentario
+                ) VALUES (
+                    :nome, :email, :telefone, :veiculo, :ano, :servico, :data, :horario, comentario
+                )");
 
-                    if($result) {
-                        $_SESSION['success_message'] = "Supplier created successfully.";
-                        header("Location: suppliers_add.php");
-                        exit();
-                    }
-    
-                } catch (PDOException $e) {
-                    $error_message = "Database Error: " . $e->getMessage();
-                }
+            $stmt->bindValue(':nome', $nome);
+            $stmt->bindValue(':cpf', $email);
+            $stmt->bindValue(':telefone', $telefone);
+            $stmt->bindValue(':veiculo', $veiculo);
+            $stmt->bindValue(':ano', $ano);
+            $stmt->bindValue(':servico', $servico);
+            $stmt->bindValue(':data', $data);
+            $stmt->bindValue(':horario', $horario);
+            $stmt->bindValue(':comentario', $comentario);
+
+            try {
+
+                $stmt->execute();
+
+                $sucesso = 'Cliente cadastrado com sucesso!';
+
+            } catch (PDOException $e) {
+
+                $erro = 'CPF ou e-mail já cadastrado.';
+
             }
         }
     }
