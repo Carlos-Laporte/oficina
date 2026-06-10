@@ -1,3 +1,4 @@
+/*corpo da pagina adm*/
 body{
     font-family: arial;
     background: black;
@@ -48,12 +49,6 @@ body{
     color: white;
 }
 
-.parteInformacao{
-    background: white;
-    padding-left: 20px;
-    flex: 1;
-}
-
 .telas{
     padding: 20px;
     display: grid;
@@ -95,3 +90,12 @@ body{
     background: red;
     border-radius: 10px;
 }
+
+/*parte informações*/
+
+.parteInformacao{
+    background: white;
+    padding-left: 20px;
+    flex: 1;
+}
+

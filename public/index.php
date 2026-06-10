@@ -1,59 +1,5 @@
 <?php
-
-    session_start();
-    require_once("../conexao.php");
-
-    $erro = '';
-    $sucesso = '';
-
-    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-
-        $nome = trim($_POST['nome'] ?? '');
-        $email = trim($_POST['email'] ?? '');
-        $telefone = trim($_POST['telefone'] ?? '');
-        $veiculo = trim($_POST['veiculo'] ?? '');
-        $ano = trim($_POST['ano'] ?? '');
-        $servico = trim($_POST['servico'] ?? '');
-        $data = trim($_POST['data'] ?? '');
-        $horario = trim($_POST['horario'] ?? '');
-        $comentario = trim($_POST['comentario'] ?? '');
-
-        if (empty($nome) || empty($email) || empty($telefone) || empty($veiculo) || empty($ano) || empty($servico) || empty($data) || empty($horario)) {
-
-            $erro = 'Preencha todos os campos.';
-
-        } else {
-
-            $stmt = $conn->prepare("
-                INSERT INTO cliente (
-                    nome, email, telefone, veiculo, ano, servico, data, horario, comentario
-                ) VALUES (
-                    :nome, :email, :telefone, :veiculo, :ano, :servico, :data, :horario, comentario
-                )");
-
-            $stmt->bindValue(':nome', $nome);
-            $stmt->bindValue(':cpf', $email);
-            $stmt->bindValue(':telefone', $telefone);
-            $stmt->bindValue(':veiculo', $veiculo);
-            $stmt->bindValue(':ano', $ano);
-            $stmt->bindValue(':servico', $servico);
-            $stmt->bindValue(':data', $data);
-            $stmt->bindValue(':horario', $horario);
-            $stmt->bindValue(':comentario', $comentario);
-
-            try {
-
-                $stmt->execute();
-
-                $sucesso = 'Cliente cadastrado com sucesso!';
-
-            } catch (PDOException $e) {
-
-                $erro = 'CPF ou e-mail já cadastrado.';
-
-            }
-        }
-    }
+    require_once("../admin/agendamento/cadastrar.php");
 ?>
 
 <!DOCTYPE html>
@@ -273,23 +219,23 @@
                 </div>
                 <div class="formAgendamento">
                     <h2 class="formTitulo">FORMULÁRIO DE AGENDAMENTO</h2>
-                    <form action="index.php" method="$_POST">
+                    <form action="index.php" method="POST">
                         <div class="formConteiner">
-                            <input type="text" placeholder="Nome Completo" id="nome" required>
-                            <input type="email" placeholder="Email" id="email" required>
-                            <input type="tel" placeholder="Telefone" id="telefone" required>
-                            <input type="text" placeholder="Veículo (marca e modelo)" id="veiculo" required>
-                            <input type="text" placeholder="Ano do Veículo" id="ano" required>
-                            <select type="text" placeholder="Serviço Desejado" id="servico" required>
+                            <input type="text" placeholder="Nome Completo" id="nome" name="nome" required>
+                            <input type="email" placeholder="Email" id="email" name="email" required>
+                            <input type="tel" placeholder="Telefone" id="telefone" name="telefone" required>
+                            <input type="text" placeholder="Veículo (marca e modelo)" id="veiculo" name="veiculo" required>
+                            <input type="text" placeholder="Ano do Veículo" id="ano" name="ano" required>
+                            <select type="text" placeholder="Serviço Desejado" id="servico" name="servico" required>
                                 <option value="">Selecione um serviço</option>
                                 <option value="manutencao">Manutenção</option>
                                 <option value="reparo">Reparo</option>
                                 <option value="diagnostico">Diagnóstico</option>
                             </select>
-                            <input type="date" placeholder="Data da Visita" id="data" required>
-                            <input type="time" placeholder="Horário preferido" id="horario" required>
-                            <textarea placeholder="Observações adicionais" rows="4" id="comentario" ></textarea>
-                            <button class="agendamento">AGENDAR VISITA</button>
+                            <input type="date" placeholder="Data da Visita" id="data" name="data" required>
+                            <input type="time" placeholder="Horário preferido" id="horario" name="horario" required>
+                            <textarea placeholder="Observações adicionais" rows="4" id="comentario" name="comentario" ></textarea>
+                            <button type="submit" class="agendamento">AGENDAR VISITA</button>
                         </div>
                     </form>
                 </div>

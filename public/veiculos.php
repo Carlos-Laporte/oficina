@@ -1,7 +1,7 @@
 <?php
     session_start();
-    require_once("../admin/agendamento/listar.php");
-    require_once("../admin/agendamento/cadastrar.php");
+    require_once("../admin/veiculos/listar.php");
+    require_once("../admin/veiculos/cadastrar.php");
 ?>
 
 <!DOCTYPE html>
@@ -17,11 +17,11 @@
     <?php require_once("pages/_layout.php"); ?>
     <div class="corpoInformacao">
         <div class="parteSuperior">
-            <h2>Agendamentos</h2>
+            <h2>Clientes</h2>
         </div>
         <div class="parteInformacao">
-            <h2>Agandamentos</h2>
-            <p>Dashboard > Agendamentos</p>
+            <h2>Clientes</h2>
+            <p>Dashboard > Clientes</p>
             <div class="corpoDiv">
                 <div class="h2">
 
@@ -33,14 +33,9 @@
                             <tr>
                                 <th>ID</th>
                                 <th>Nome</th>
-                                <th>Email</th>
+                                <th>CPF</th>
                                 <th>Telefone</th>
-                                <th>Veiculo</th>
-                                <th>Ano do Veículo</th>
-                                <th>Tipo de Serviço</th>
-                                <th>Data de Visita</th>
-                                <th>Horário</th>
-                                <th>Comentário</th>
+                                <th>Email</th>
                                 <th>Ações</th>
                             </tr>
                         </thead>
@@ -49,17 +44,12 @@
                                 <tr>
                                     <td><?= $linha['id'] ?></td>
                                     <td><?= $linha['nome'] ?></td>
-                                    <td><?= $linha['email'] ?></td>
+                                    <td><?= $linha['cpf'] ?></td>
                                     <td><?= $linha['telefone'] ?></td>
-                                    <td><?= $linha['veiculo'] ?></td>
-                                    <td><?= $linha['ano'] ?></td>
-                                    <td><?= $linha['servico'] ?></td>
-                                    <td><?= $linha['data'] ?></td>
-                                    <td><?= $linha['horario'] ?></td>
-                                    <td><?= $linha['comentario'] ?></td>
+                                    <td><?= $linha['email'] ?></td>
                                     <td>
-                                        <a href="../../agendamento/editar.php?id=<?= $linha['id'] ?>"> Editar</a>
-                                        <a href="../../agendamento/excluir.php?id=<?= $linha['id'] ?>"> Editar</a>
+                                        <a href="../../clientes/editar.php?id=<?= $linha['id'] ?>"> Editar</a>
+                                        <a href="../../clientes/excluir.php?id=<?= $linha['id'] ?>"> Editar</a>
                                     </td>
                                 </tr>
                             <?php endforeach; ?>

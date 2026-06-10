@@ -27,7 +27,7 @@
                     <div class="areaDeNavegacao">
                         <div class="telas">
                             <a href="index.php"><i class="bi bi-house-door-fill"></i> Dashboard</a>
-                            <a href="../public/agendamento.php"><i class="bi bi-postcard-fill"> Agendamentos</i></a>
+                            <a href="../public/agendamento.php"><i class="bi bi-postcard-fill"></i> Agendamentos</a>
                             <a href="../public/clientes.php"><i class="bi bi-person-fill"></i> Clientes</a>
                             <a href="../pages/products_add.php"><i class="bi bi-car-front-fill"></i> Veículos</a>  
                             <a href="../pages/suppliers_table.php"><i class="bi bi-card-checklist"></i> Ordens de Serviço</a>
@@ -38,7 +38,7 @@
                             <a href="../pages/user_add.php"><i class="bi bi-house-gear-fill"></i> Configurações</a>
                         </div>
                         <div class="sair">
-                            <a href="logout.php"><i class="bi bi-box-arrow-right"></i> Sair</a>
+                            <a href="../admin/logout.php"><i class="bi bi-box-arrow-right"></i> Sair</a>
                         </div>
                     </div>
                 </div>

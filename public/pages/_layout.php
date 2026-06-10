@@ -9,7 +9,7 @@
           <div class="areaDeNavegacao">
               <div class="telas">
                   <a href="../admin/index.php"><i class="bi bi-house-door-fill"></i> Dashboard</a>
-                  <a href="agendamento.php"><i class="bi bi-postcard-fill"> Agendamentos</i></a>
+                  <a href="agendamento.php"><i class="bi bi-postcard-fill"></i> Agendamentos</a>
                   <a href="clientes.php"><i class="bi bi-person-fill"></i> Clientes</a>
                   <a href="veiculos.php"><i class="bi bi-car-front-fill"></i> Veículos</a>  
                   <a href="ordemServico.php"><i class="bi bi-card-checklist"></i> Ordens de Serviço</a>
