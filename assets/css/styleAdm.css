@@ -38,6 +38,14 @@ body{
     justify-content: center;
 }
 
+.logoDashboard h1{
+    margin-bottom: 0px;
+}
+
+.logoDashboard p{
+    color: red;
+}
+
 .areaDeNavegacao{
     display: grid;
     background: rgb(17, 24, 39);
@@ -46,7 +54,9 @@ body{
 
 .parteSuperior{
     background: rgb(10, 15, 25);
-    color: white;
+    color: red;
+    display: flex;
+    justify-content: center;
 }
 
 .telas{
@@ -99,3 +109,16 @@ body{
     flex: 1;
 }
 
+.corpoDiv{
+    background: #101010;
+    color: white;
+    box-shadow: 0px 30px 50px black;
+    border: 1px solid #101010;
+    border-radius: 10px;
+    padding: 30px;
+    max-width: 1050px;
+}
+
+.informacaoTabela thead{
+    color: red;
+}

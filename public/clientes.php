@@ -12,6 +12,7 @@
     <title>Document</title>
     <link rel="stylesheet" href="../assets/css/styleAdm.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
 </head>
 <body>
     <?php require_once("pages/_layout.php"); ?>
@@ -28,7 +29,7 @@
                 </div>
                 <form action=""></form>
                 <div class="corpoTabela">
-                    <table id="userTable" class="dashboard_table">
+                    <table id="tabela" class="informacaoTabela">
                         <thead>
                             <tr>
                                 <th>ID</th>
@@ -49,7 +50,7 @@
                                     <td><?= $linha['email'] ?></td>
                                     <td>
                                         <a href="../../clientes/editar.php?id=<?= $linha['id'] ?>"> Editar</a>
-                                        <a href="../../clientes/excluir.php?id=<?= $linha['id'] ?>"> Editar</a>
+                                        <a href="../../clientes/excluir.php?id=<?= $linha['id'] ?>"> Deletar</a>
                                     </td>
                                 </tr>
                             <?php endforeach; ?>
@@ -62,5 +63,9 @@
             </div>
         </div>
     </div>
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+
+    <script src="../assets/js/datatables.js"></script>
 </body>
 </html>

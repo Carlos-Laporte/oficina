@@ -39,7 +39,7 @@
 
             try {
                 $stmt->execute();
-                header("Location: ../index.php?sucesso=1");
+                header("Location: ../public/index.php?sucesso=1");
                 exit;
             } catch (PDOException $e) {
                 $erro = $e->getMessage();
