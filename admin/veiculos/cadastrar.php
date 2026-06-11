@@ -10,24 +10,26 @@
         $marca = trim($_POST['marca'] ?? '');
         $ano = trim($_POST['ano'] ?? '');
         $cor = trim($_POST['cor'] ?? '');
+        $cliente_id = trim($_POST['cliente_id']);
 
-        if (empty($placa) || empty($modelo) || empty($marca) || empty($ano) || empty($cor)) {
+        if (empty($placa) || empty($modelo) || empty($marca) || empty($ano) || empty($cor) || empty($cliente_id)) {
 
             $erro = 'Preencha todos os campos.';
 
         } else {
             
             $sql = "INSERT INTO veiculo
-                    (placa, modelo, marca, ano, cor
+                    (placa, modelo, marca, ano, cor, cliente_id
                 ) VALUES 
-                    (:placa, :modelo, :marca, :ano, :cor)";
+                    (:placa, :modelo, :marca, :ano, :cor, :cliente_id)";
 
             $stmt = $conn->prepare($sql);
-            $stmt->bindValue(':nome', $placa);
+            $stmt->bindValue(':placa', $placa);
             $stmt->bindValue(':modelo', $modelo);
             $stmt->bindValue(':marca', $marca);
             $stmt->bindValue(':ano', $ano);
             $stmt->bindValue(':cor', $cor);
+            $stmt->bindValue(':cliente_id', $cliente_id);
 
             try {
                 $stmt->execute();
@@ -47,3 +49,7 @@
 <?php if (!empty($erro)): ?>
     <p><?= $erro ?></p>
 <?php endif; ?>
+
+<?php
+    $clientes = $conn->query("SELECT id, nome FROM cliente")->fetchAll();
+?>

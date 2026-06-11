@@ -109,7 +109,7 @@ body{
     flex: 1;
 }
 
-.corpoDiv{
+.corpoDivAgendamento{
     background: #101010;
     color: white;
     box-shadow: 0px 30px 50px black;
@@ -119,6 +119,66 @@ body{
     max-width: 1050px;
 }
 
+.corpoDivCliente{
+    background: #101010;
+    color: white;
+    box-shadow: 0px 30px 50px black;
+    border: 1px solid #101010;
+    border-radius: 10px;
+    padding: 30px;
+    max-width: 750px;
+}
+
+.corpoDivVeiculo{
+    background: #101010;
+    color: white;
+    box-shadow: 0px 30px 50px black;
+    border: 1px solid #101010;
+    border-radius: 10px;
+    padding: 30px;
+    flex: 2;
+}
+
+.conjunto{
+    display: flex;
+    justify-content: space-around;
+    gap: 80px;
+}
+
+.cadastro{
+    background: #101010;
+    color: white;
+    box-shadow: 0px 30px 50px black;
+    border: 1px solid #101010;
+    border-radius: 10px;
+    padding: 30px;
+    flex: 1;
+}
+
+.texto-form{
+    color: red;
+    font-size: 20px;
+}
+
+.cadastro form{
+    background: #1a1a1a;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+    border: 1px solid #0000001f;
+    border-radius: 10px;
+    box-shadow: 0px 0px 20px #000000a1;
+    padding: 40px;
+}
+
+.formConteiner{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
 .informacaoTabela thead{
     color: red;
 }
+

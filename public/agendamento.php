@@ -23,7 +23,7 @@
         <div class="parteInformacao">
             <h2>Agandamentos</h2>
             <p>Dashboard > Agendamentos</p>
-            <div class="corpoDiv">
+            <div class="corpoDivAgendamento">
                 <div class="h2">
 
                 </div>
