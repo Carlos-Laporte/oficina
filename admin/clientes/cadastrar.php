@@ -1,5 +1,5 @@
 <?php
-    require_once("../conexao.php");
+    require_once("../../conexao.php");
 
     $erro = '';
 
@@ -17,7 +17,7 @@
 
         } else {
             
-            $sql = "INSERT INTO agendamento
+            $sql = "INSERT INTO cliente
                     (nome, cpf, telefone, email
                 ) VALUES 
                     (:nome, :cpf, :telefone, :email)";
@@ -46,3 +46,16 @@
 <?php if (!empty($erro)): ?>
     <p><?= $erro ?></p>
 <?php endif; ?>
+
+
+<form action="veiculos.php" method="POST">
+    <label for="">Clinte</label><br>
+    <input type="text" name="nome" placeholder="Nome completo" required><br>
+    <label for="">CPF</label><br>
+    <input type="text" name="cpf" placeholder="000.000.000-00" required><br>
+    <label for="">Telefone</label><br>
+    <input type="text" name="telefone" placeholder="(00) 00000-0000" required><br>
+    <label for="">Email</label><br>
+    <input type="email" name="email" placeholder="exemplo@gmail.com" required><br>
+    <button type="submit"> Salvar veículo</button>
+</form>
