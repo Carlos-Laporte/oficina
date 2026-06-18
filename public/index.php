@@ -1,7 +1,51 @@
 <?php
-    require_once("../admin/agendamento/cadastrar.php");
-?>
+$mensagemSucesso = isset($_GET['agendamento']) && $_GET['agendamento'] === 'sucesso'
+    ? 'Agendamento enviado com sucesso! Entraremos em contato para confirmar sua visita.'
+    : '';
+$mensagemErro = '';
 
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $nome = trim($_POST['nome'] ?? '');
+    $email = trim($_POST['email'] ?? '');
+    $telefone = trim($_POST['telefone'] ?? '');
+    $veiculo = trim($_POST['veiculo'] ?? '');
+    $ano = trim($_POST['ano'] ?? '');
+    $servico = trim($_POST['servico'] ?? '');
+    $data = trim($_POST['data'] ?? '');
+    $horario = trim($_POST['horario'] ?? '');
+    $comentario = trim($_POST['comentario'] ?? '');
+
+    if ($nome === '' || $email === '' || $telefone === '' || $veiculo === '' || $ano === '' || $servico === '' || $data === '' || $horario === '') {
+        $mensagemErro = 'Preencha todos os campos obrigatórios.';
+    } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        $mensagemErro = 'Informe um e-mail válido.';
+    } else {
+        try {
+            require_once __DIR__ . '/../conexao.php';
+
+            $sql = "INSERT INTO agendamento (nome, email, telefone, veiculo, ano, servico, data, horario, comentario)
+                    VALUES (:nome, :email, :telefone, :veiculo, :ano, :servico, :data, :horario, :comentario)";
+            $stmt = $conn->prepare($sql);
+            $stmt->execute([
+                ':nome' => $nome,
+                ':email' => $email,
+                ':telefone' => $telefone,
+                ':veiculo' => $veiculo,
+                ':ano' => $ano,
+                ':servico' => $servico,
+                ':data' => $data,
+                ':horario' => $horario,
+                ':comentario' => $comentario,
+            ]);
+
+            header('Location: index.php?agendamento=sucesso#agendamento');
+            exit;
+        } catch (PDOException $e) {
+            $mensagemErro = 'Não foi possível enviar o agendamento agora. Tente novamente.';
+        }
+    }
+}
+?>
 <!DOCTYPE html>
 <html lang="pt">
     <head>
@@ -219,6 +263,12 @@
                 </div>
                 <div class="formAgendamento">
                     <h2 class="formTitulo">FORMULÁRIO DE AGENDAMENTO</h2>
+                    <?php if ($mensagemSucesso): ?>
+                        <div class="mensagemFormulario sucesso"><?= htmlspecialchars($mensagemSucesso) ?></div>
+                    <?php endif; ?>
+                    <?php if ($mensagemErro): ?>
+                        <div class="mensagemFormulario erro"><?= htmlspecialchars($mensagemErro) ?></div>
+                    <?php endif; ?>
                     <form action="index.php" method="POST">
                         <div class="formConteiner">
                             <input type="text" placeholder="Nome Completo" id="nome" name="nome" required>

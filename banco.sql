@@ -1,7 +1,90 @@
 -- banco.sql
--- Estrutura inicial do banco de dados
+-- Estrutura do banco de dados da oficina
 
-CREATE DATABASE IF NOT EXISTS `oficina`;
+CREATE DATABASE IF NOT EXISTS `oficina`
+  DEFAULT CHARACTER SET utf8mb4
+  DEFAULT COLLATE utf8mb4_unicode_ci;
+
 USE `oficina`;
 
--- Crie tabelas aqui
+CREATE TABLE IF NOT EXISTS `adm` (
+  `id` INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+  `nome` VARCHAR(100) NOT NULL,
+  `email` VARCHAR(150) NOT NULL UNIQUE,
+  `senha` VARCHAR(255) NOT NULL,
+  `criado_em` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE IF NOT EXISTS `cliente` (
+  `id` INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+  `nome` VARCHAR(150) NOT NULL,
+  `cpf` VARCHAR(14) NOT NULL UNIQUE,
+  `telefone` VARCHAR(20) NULL,
+  `email` VARCHAR(150) NULL,
+  `adm_id` INT UNSIGNED NOT NULL,
+  `criado_em` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  INDEX `idx_cliente_adm` (`adm_id`),
+  CONSTRAINT `fk_cliente_adm`
+    FOREIGN KEY (`adm_id`) REFERENCES `adm`(`id`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE IF NOT EXISTS `veiculo` (
+  `id` INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+  `cliente_id` INT UNSIGNED NOT NULL,
+  `marca` VARCHAR(100) NOT NULL,
+  `modelo` VARCHAR(100) NOT NULL,
+  `placa` VARCHAR(20) NOT NULL UNIQUE,
+  `ano` VARCHAR(4) NULL,
+  `cor` VARCHAR(30) NULL,
+  `criado_em` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  INDEX `idx_veiculo_cliente` (`cliente_id`),
+  CONSTRAINT `fk_veiculo_cliente`
+    FOREIGN KEY (`cliente_id`) REFERENCES `cliente`(`id`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE IF NOT EXISTS `agendamento` (
+  `id` INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+  `nome` VARCHAR(150) NOT NULL,
+  `email` VARCHAR(150) NULL,
+  `telefone` VARCHAR(20) NOT NULL,
+  `veiculo` VARCHAR(150) NOT NULL,
+  `ano` VARCHAR(4) NULL,
+  `servico` VARCHAR(100) NOT NULL,
+  `data` DATE NOT NULL,
+  `horario` TIME NOT NULL,
+  `comentario` TEXT NULL,
+  `criado_em` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE IF NOT EXISTS `os` (
+  `id` INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+  `veiculo_id` INT UNSIGNED NOT NULL,
+  `descricao` TEXT NOT NULL,
+  `valor` DECIMAL(10, 2) NOT NULL DEFAULT 0.00,
+  `data` DATE NOT NULL,
+  `comprovante` VARCHAR(255) NULL,
+  `status` VARCHAR(50) NOT NULL DEFAULT 'Orçamento',
+  `criado_em` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  INDEX `idx_os_veiculo` (`veiculo_id`),
+  CONSTRAINT `fk_os_veiculo`
+    FOREIGN KEY (`veiculo_id`) REFERENCES `veiculo`(`id`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE IF NOT EXISTS `documentos` (
+  `id` INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+  `os_id` INT UNSIGNED NULL,
+  `nome` VARCHAR(255) NOT NULL,
+  `arquivo` VARCHAR(255) NOT NULL,
+  `criado_em` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  INDEX `idx_documentos_os` (`os_id`),
+  CONSTRAINT `fk_documentos_os`
+    FOREIGN KEY (`os_id`) REFERENCES `os`(`id`)
+    ON DELETE SET NULL
+    ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;

@@ -1,54 +1,48 @@
 <?php
-// ============================================================
-// salvar.php — Validação e inserção de paciente
-// ✏️  TAREFA 4: Complete as partes marcadas com TODO
-// ============================================================
-require_once '../../conexao.php';
-require_once '../../auth.php';
-require_once '../public/_layout.php';
-verificarAcesso();
+if (session_status() === PHP_SESSION_NONE) session_start();
+require_once("../../conexao.php");
 
-$erros = [];
-
-// TODO 1: Receba os dados enviados pelo formulário (POST)
-// Campos: $nome, $cpf, $data_nascimento, $telefone, $convenio
-
-
-
-// TODO 2: Valide os campos obrigatórios com empty()
-// nome: obrigatório
-// cpf: obrigatório
-// data_nascimento: obrigatório
-// Adicione a mensagem de erro ao array $erros
-// Exemplo: $erros[] = 'O campo nome é obrigatório.';
-
-
-
-
-// TODO 3: Se não houver erros, execute o INSERT com PDO
-// Use: prepare → bindValue → execute
-// SQL: INSERT INTO pacientes 
-// Após o INSERT: redirecione para index.php com header() + exit
-if (empty($erros)) {
-    // Escreva o INSERT aqui
-
-
-
-
+if (!isset($_SESSION['adm_id'])) {
+    header('Location: ../../login.php');
+    exit;
 }
 
-// Se chegou aqui, há erros — exibe na tela
-cabecalho('Erro ao Salvar');
-?>
-<div class="card">
-  <h2>Erros no Cadastro</h2>
-  <div class="alert alert-danger">
-    <ul style="padding-left:18px;">
-      <?php foreach ($erros as $e): ?>
-        <li><?= htmlspecialchars($e, ENT_QUOTES, 'UTF-8') ?></li>
-      <?php endforeach; ?>
-    </ul>
-  </div>
-  <a href="cadastrar.php" class="btn btn-primary">Voltar ao formulário</a>
-</div>
-<?php rodape(); ?>
+if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+    header('Location: paginaVeiculos.php');
+    exit;
+}
+
+$cliente_id = intval($_POST['cliente_id'] ?? 0);
+$marca = trim($_POST['marca'] ?? '');
+$modelo = trim($_POST['modelo'] ?? '');
+$placa = trim($_POST['placa'] ?? '');
+$ano = trim($_POST['ano'] ?? '');
+$erro = '';
+
+if (!$cliente_id || empty($marca) || empty($modelo) || empty($placa)) {
+    $erro = 'Preencha todos os campos obrigatórios.';
+}
+
+if (!empty($erro)) {
+    header('Location: cadastrar.php?erro=' . urlencode($erro));
+    exit;
+}
+
+$sql = "INSERT INTO veiculo (cliente_id, marca, modelo, placa, ano)
+        VALUES (:cliente_id, :marca, :modelo, :placa, :ano)";
+
+$stmt = $conn->prepare($sql);
+$stmt->bindValue(':cliente_id', $cliente_id);
+$stmt->bindValue(':marca', $marca);
+$stmt->bindValue(':modelo', $modelo);
+$stmt->bindValue(':placa', $placa);
+$stmt->bindValue(':ano', $ano);
+
+try {
+    $stmt->execute();
+    header('Location: paginaVeiculos.php?sucesso=1');
+    exit;
+} catch (PDOException $e) {
+    header('Location: cadastrar.php?erro=' . urlencode('Erro ao cadastrar veículo: ' . $e->getMessage()));
+    exit;
+}

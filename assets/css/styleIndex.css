@@ -479,6 +479,24 @@ header{
     margin-bottom: 10px;
 }
 
+.mensagemFormulario{
+    width: 100%;
+    border-radius: 8px;
+    padding: 12px 14px;
+    margin-bottom: 14px;
+    font-weight: 700;
+}
+
+.mensagemFormulario.sucesso{
+    background: #dcfce7;
+    color: #166534;
+}
+
+.mensagemFormulario.erro{
+    background: #fee2e2;
+    color: #991b1b;
+}
+
 .formConteiner input{
     width: 100%;
     color: white;

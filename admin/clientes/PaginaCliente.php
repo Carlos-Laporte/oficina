@@ -6,8 +6,6 @@
         header('Location: ../../login.php');
         exit;
     }
-
-    $erro = $_GET['erro'] ?? '';
 ?>
 
 <!DOCTYPE html>
@@ -15,9 +13,10 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Novo Cliente - Lelicar Center Automotivo</title>
+        <title>Clientes — Lelicar Center Automotivo</title>
         <link rel="stylesheet" href="../../assets/css/styleAdm.css">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+        <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
     </head>
     <body>
         <main class="corpo">
@@ -32,13 +31,13 @@
                             <a href="/oficina/admin/index.php"><i class="bi bi-house-door-fill"></i> Dashboard</a>
                             <a href="/oficina/admin/agendamento/PaginaAgendamento.php"><i class="bi bi-postcard-fill"></i> Agendamentos</a>
                             <a href="/oficina/admin/clientes/PaginaCliente.php" class="ativo"><i class="bi bi-person-fill"></i> Clientes</a>
-                            <a href="/oficina/admin/veiculos/paginaVeiculos.php"><i class="bi bi-car-front-fill"></i> Veiculos</a>
-                            <a href="/oficina/admin/OS/paginaOrdemServico.php"><i class="bi bi-card-checklist"></i> Ordens de Servico</a>
-                            <a href="/oficina/admin/serviços/paginaServicos.php"><i class="bi bi-tools"></i> Serviços</a>
-                            <a href="#"><i class="bi bi-gear-wide-connected"></i> Pecas</a>
+                            <a href="/oficina/admin/veiculos/paginaVeiculos.php"><i class="bi bi-car-front-fill"></i> Veículos</a>
+                            <a href="/oficina/admin/OS/paginaOrdemServico.php"><i class="bi bi-card-checklist"></i> Ordens de Serviço</a>
+                            <a href="#"><i class="bi bi-tools"></i> Serviços</a>
+                            <a href="#"><i class="bi bi-gear-wide-connected"></i> Peças</a>
                             <a href="#"><i class="bi bi-currency-dollar"></i> Financeiro</a>
-                            <a href="#"><i class="bi bi-graph-up"></i> Relatorios</a>
-                            <a href="#"><i class="bi bi-house-gear-fill"></i> Configuracoes</a>
+                            <a href="#"><i class="bi bi-graph-up"></i> Relatórios</a>
+                            <a href="#"><i class="bi bi-house-gear-fill"></i> Configurações</a>
                             <a href="/oficina/admin/documentos/paginaDocumentos.php"><i class="bi bi-file-earmark-arrow-up"></i> Documentos</a>
                         </div>
                         <div class="sair">
@@ -51,37 +50,27 @@
                         <h2>Clientes</h2>
                     </div>
                     <div class="parteInformacao">
-                        <h2>Novo Cliente</h2>
-                        <p>Dashboard > Clientes > Cadastrar</p>
-
-                        <?php if (!empty($erro)): ?>
-                            <div class="alerta erro"><?= htmlspecialchars($erro) ?></div>
-                        <?php endif; ?>
-
-                        <div class="formCadastro">
-                            <h3>Dados do Cliente</h3>
-                            <form action="salvar.php" method="POST">
-                                <label>Nome *</label>
-                                <input type="text" name="nome" required>
-
-                                <label>CPF *</label>
-                                <input type="text" name="cpf" required>
-
-                                <label>Telefone</label>
-                                <input type="text" name="telefone">
-
-                                <label>Email</label>
-                                <input type="email" name="email">
-
-                                <div class="formAcoes">
-                                    <button type="submit"><i class="bi bi-check2-circle"></i> Cadastrar Cliente</button>
-                                    <a href="PaginaCliente.php" class="btnCancelar"><i class="bi bi-x-circle"></i> Cancelar</a>
+                        <h2>Clientes</h2>
+                        <p>Dashboard > Clientes</p>
+                        <div class="conjunto">
+                            <div class="corpoDivVeiculo">
+                                <div class="corpoTabela">
+                                    <?php require_once("listar.php"); ?>
                                 </div>
-                            </form>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </main>
+        <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+        <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+        <script>
+            $(document).ready(function () {
+                $('#tabela').DataTable({
+                    language: { url: '//cdn.datatables.net/plug-ins/1.13.6/i18n/pt-BR.json' }
+                });
+            });
+        </script>
     </body>
 </html>
